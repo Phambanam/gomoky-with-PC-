@@ -51,7 +51,7 @@ public class BoardMarkState {
     }
 
     public Point MaxPos() {
-        int Max = 0; // diem max
+        int Max = 0; // mark max
         Point p = new Point();
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {

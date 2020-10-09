@@ -29,6 +29,18 @@
 	 -fx-font-size: 15.0px;
 	 -fx-border-color: transparent ;
 }
+#btnT{
+     -fx-background-radius: 10.0;
+      -fx-fill:rgb(255,0,0);
+	 -fx-min-height: 30.0px;
+	 -fx-font-style: oblique ;
+	 -fx-font-weight: bold;
+	 -fx-font-family: "Times New Roman", Times, Arial, sans-serif;
+	 -fx-wrap-text: true ;
+	 -fx-font-size: 20.0px;
+
+	 -fx-border-color: transparent ;
+}
 #nameplayer{
 	-fx-label-padding: 30px 10px 0px 70px;
 	-fx-font-weight: bold;

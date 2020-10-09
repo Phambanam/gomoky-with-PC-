@@ -3,6 +3,14 @@ package model;
 public class BoardState {
     private int width,height;
     private  int[][] boardArr;
+    private Point begin;
+    private Point end;
+
+    public BoardState(int widthBoard, int heightBoard) {
+        boardArr = new int[widthBoard][heightBoard];
+        this.width = widthBoard;
+        this.height = heightBoard;
+    }
 
     public int getWidth() {
         return width;
@@ -34,7 +42,7 @@ public class BoardState {
         int r = 0, c = 0;
         int i;
         boolean human, pc;
-        // Check hang ngang
+        // Check hang ngang(---)
         while (c < width - 4) {
             human = true;
             pc = true;
@@ -44,6 +52,10 @@ public class BoardState {
                 if (boardArr[row][c + i] != 2)
                     pc = false;
             }
+            if(human || pc){
+                begin = new Point(row,c);
+                end = new Point(row,c+5);
+            }
             if (human)
                 return 1;
             if (pc)
@@ -51,7 +63,7 @@ public class BoardState {
             c++;
         }
 
-        // Check  hang doc
+        // Check  hang doc (||)
         while (r < height - 4) {
             human = true;
             pc = true;
@@ -61,6 +73,10 @@ public class BoardState {
                 if (boardArr[r + i][col] != 2)
                     pc = false;
             }
+            if(human || pc){
+                begin = new Point(r,col);
+                end = new Point(r+5,col);
+            }
             if (human)
                 return 1;
             if (pc)
@@ -68,7 +84,7 @@ public class BoardState {
             r++;
         }
 
-        // Check duong cheo xuong
+        // Check duong cheo xuong(-_)
         r = row;
         c = col;
         while (r > 0 && c > 0) {
@@ -84,15 +100,21 @@ public class BoardState {
                 if (boardArr[r + i][c + i] != 2)
                     pc = false;
             }
-            if (human)
-                return 1;
+            if (human){
+                begin = new Point(r,c);
+                end = new Point(r+5,c+5);
+                return 1;}
             if (pc)
+            {
+                begin = new Point(r,c);
+                end = new Point(r+5,c+5);
                 return 2;
+            }
             r++;
             c++;
         }
 
-        // Check duong cheo len
+        // Check duong cheo len(_-)
         r = row;
         c = col;
         while (r < height - 1 && c > 0) {
@@ -108,7 +130,11 @@ public class BoardState {
                     human = false;
                 if (boardArr[r - i][c + i] != 2)
                     pc = false;
+            }if(human || pc){
+                begin = new Point(r,c);
+                end = new Point(r-5,c+5);
             }
+
             if (human)
                 return 1;
             if (pc)
@@ -123,12 +149,7 @@ public class BoardState {
     }
 
 
-    public boolean setPosition(int x, int y, int player) {
-        if(boardArr[x][y] == 0)
-        {
+    public void setPosition(int x, int y, int player) {
             boardArr[x][y] = player;
-            return true ;
-        }
-        return false;
     }
 }
