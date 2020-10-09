@@ -22,8 +22,8 @@ import java.io.InputStream;
 import java.util.Optional;
 
 public class View implements EventHandler<ActionEvent> {
-    public static final int WIDTH_BOARD = 7;
-    public static final int HEIGHT_BOARD = 7;
+    public static final int WIDTH_BOARD = 20;
+    public static final int HEIGHT_BOARD = 20;
     public static final int WIDTH_PANE = 1200;
     public static final int HEIGHT_PANE = 700;
     private Button btnHuman;
