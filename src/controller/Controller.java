@@ -96,7 +96,6 @@ public class Controller {
                 if (getBoardState().getPosition(x, y) == 0) {
                     newPlay(x, y, 1, a);
                     setPlayerFlag(2);
-                    System.out.println(1);
                 }
 
             }
@@ -104,7 +103,6 @@ public class Controller {
                 Point p = moveAI(2);
                 newPlay(p.getX(), p.getY(), 2, a);
                 setPlayerFlag(1);
-                System.out.println(2);
 
             }
         }
