@@ -174,19 +174,19 @@ public class PcPlayer implements Player {
             return value;
         }
         int v = 0;
-       evalBoard(boardMarkState, 2);
-        ArrayList<Point> list = new ArrayList<>(); // list cac nut con
-        for (int i = 0; i < maxMove; i++) {
-            Point node = boardMarkState.MaxPos();
-            if (node == null)
-                break;
-            list.add(node);
-            boardMarkState.getEBoard()[node.getX()][node.getY()] = 0;
-        }
+
 
 
         if (pC) {
-
+            evalBoard(boardMarkState, 2);
+            ArrayList<Point> list = new ArrayList<>(); // list cac nut con
+            for (int i = 0; i < maxMove; i++) {
+                Point node = boardMarkState.MaxPos();
+                if (node == null)
+                    break;
+                list.add(node);
+                boardMarkState.getEBoard()[node.getX()][node.getY()] = 0;
+            }
             v = Integer.MIN_VALUE;
             for (Point com : list) {
                 state.setPosition(com.getX(), com.getY(), 2);
@@ -201,7 +201,15 @@ public class PcPlayer implements Player {
 
             }
         } else {
-
+            evalBoard(boardMarkState, 1);
+            ArrayList<Point> list = new ArrayList<>(); // list cac nut con
+            for (int i = 0; i < maxMove; i++) {
+                Point node = boardMarkState.MaxPos();
+                if (node == null)
+                    break;
+                list.add(node);
+                boardMarkState.getEBoard()[node.getX()][node.getY()] = 0;
+            }
             v = Integer.MAX_VALUE;
             for (Point com : list) {
                 state.setPosition(com.getX(), com.getY(), 1);
@@ -235,7 +243,6 @@ public class PcPlayer implements Player {
     @Override
     public Point movePoint(int player) {
         alphaBeta(Integer.MAX_VALUE, Integer.MAX_VALUE, 2);
-        System.out.println(goAi.getX() + " " + goAi.getY());
         if (goAi != null) return goAi;
         return new Point(0, 0);
     }
